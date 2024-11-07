@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Default Title</title> <!-- This title will be changed dynamically -->
+    <link id="dynamic-favicon" rel="icon" href="https://example.com/default-favicon.png"> <!-- This favicon will be changed dynamically -->
+
+    <style>
+        /* Basic styling for the page */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #111;
+            color: white;
+        }
+        input[type="text"] {
+            margin: 10px;
+            padding: 10px;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: 1px solid #333;
+            background-color: #222;
+            color: white;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            background-color: #333;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cloaker Settings</h1>
+    <div>
+        <label for="page-title">Page Title:</label>
+        <input type="text" id="page-title" placeholder="Enter new page title">
+    </div>
+    <div>
+        <label for="favicon-url">Favicon URL:</label>
+        <input type="text" id="favicon-url" placeholder="Enter new favicon URL">
+    </div>
+    <button onclick="updatePageSettings()">Update Settings</button>
+
+    <script>
+        // Function to update the page title and favicon
+        function updatePageSettings() {
+            // Get the input values
+            const title = document.getElementById('page-title').value;
+            const faviconURL = document.getElementById('favicon-url').value;
+
+            // Update the page title
+            if (title) {
+                document.title = title;
+            }
+
+            // Update the favicon
+            if (faviconURL) {
+                let favicon = document.getElementById('dynamic-favicon');
+                
+                // If there's no favicon link element, create one
+                if (!favicon) {
+                    favicon = document.createElement('link');
+                    favicon.id = 'dynamic-favicon';
+                    favicon.rel = 'icon';
+                    document.head.appendChild(favicon);
+                }
+
+                // Set the favicon to the new URL
+                favicon.href = faviconURL;
+            }
+        }
+    </script>
+</body>
+</html>
